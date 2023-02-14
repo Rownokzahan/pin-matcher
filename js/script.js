@@ -8,12 +8,12 @@ document.getElementById('key-pad').addEventListener('click', function (event) {
     if (number == 'C') {
         calcInput.value = '';
     }
-    else if (number == '<'){
+    else if (number == '<') {
         const tempArray = calcInput.value.split('');
         tempArray.pop();
         calcInput.value = tempArray.join('');
     }
-    else if (number == 'Submit'){
+    else if (number == 'Submit') {
         verifyPin();
     }
     else {
@@ -35,6 +35,7 @@ function getPin() {
     }
 }
 
+var count = 3; 
 function verifyPin() {
     const pin = document.getElementById('display-pin').value;
     const typedNumbers = document.getElementById('display-numbers').value;
@@ -47,5 +48,12 @@ function verifyPin() {
     else {
         successMessage.style.display = 'none';
         failError.style.display = 'block';
+    }
+
+    // counting action left
+    count--;
+    document.getElementById('action-left').innerText = count;
+    if(count == 0){
+        document.getElementById('submit-btn').setAttribute('disabled',true);
     }
 }
